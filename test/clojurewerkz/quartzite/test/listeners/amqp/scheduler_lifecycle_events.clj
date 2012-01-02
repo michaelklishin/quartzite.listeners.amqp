@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.listeners.amqp
+(ns clojurewerkz.quartzite.test.listeners.amqp.scheduler-lifecycle-events
   (:use [clojure.test])
   (:require [langohr.core      :as lhc]
             [langohr.basic     :as lhb]
