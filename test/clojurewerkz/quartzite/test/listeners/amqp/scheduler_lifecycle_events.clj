@@ -25,17 +25,20 @@
   (map (fn [[^Envelope delivery ^AMQP$BasicProperties properties payload]]
          (.getType properties)) mbox))
 
-
-
-(deftest test-scheduler-started-event
-  (let [queue      "clojurewerkz.quartzite.test.listeners.amqp.test-scheduler-started-event"
+(defn register-consumer
+  [^String test-name]
+  (let [queue      (str "clojurewerkz.quartzite.test.listeners.amqp." test-name)
         _          (lhq/declare channel queue :auto-delete true)
         mbox       (ConcurrentLinkedQueue.)
         msg-handler   (fn [delivery properties payload]
-                        (.add mbox [delivery properties payload]))
-        listener   (PublishingSchedulerListener. channel "" queue)]
+                        (.add mbox [delivery properties payload]))]
     (-> (Thread. #(lhcons/subscribe channel queue msg-handler :auto-ack true)) .start)
-    (is (.isEmpty mbox))
+    [queue mbox]))
+
+
+(deftest test-scheduler-started-event
+  (let [[queue mbox] (register-consumer "test-scheduler-started-event")
+        listener     (PublishingSchedulerListener. channel "" queue)]
     (sched/add-scheduler-listener listener)
     (sched/start)
     (Thread/sleep 500)
@@ -44,14 +47,8 @@
 
 
 (deftest test-scheduler-cleared-event
-  (let [queue      "clojurewerkz.quartzite.test.listeners.amqp.test-scheduler-cleared-event"
-        _          (lhq/declare channel queue :auto-delete true)
-        mbox       (ConcurrentLinkedQueue.)
-        msg-handler   (fn [delivery properties payload]
-                        (.add mbox [delivery properties payload]))
-        listener   (PublishingSchedulerListener. channel "" queue)]
-    (-> (Thread. #(lhcons/subscribe channel queue msg-handler :auto-ack true)) .start)
-    (is (.isEmpty mbox))
+  (let [[queue mbox] (register-consumer "test-scheduler-cleared-event")
+        listener     (PublishingSchedulerListener. channel "" queue)]
     (sched/add-scheduler-listener listener)
     (sched/clear!)
     (sched/start)
@@ -60,15 +57,9 @@
     (is (some #{"quartz.scheduler.cleared"} (message-types-in mbox)))))
 
 
-(deftest test-scheduler-cleared-event
-  (let [queue      "clojurewerkz.quartzite.test.listeners.amqp.test-scheduler-cleared-event"
-        _          (lhq/declare channel queue :auto-delete true)
-        mbox       (ConcurrentLinkedQueue.)
-        msg-handler   (fn [delivery properties payload]
-                        (.add mbox [delivery properties payload]))
-        listener   (PublishingSchedulerListener. channel "" queue)]
-    (-> (Thread. #(lhcons/subscribe channel queue msg-handler :auto-ack true)) .start)
-    (is (.isEmpty mbox))
+(deftest test-scheduler-is-put-into-standby-mode-event
+  (let [[queue mbox] (register-consumer "test-scheduler-is-put-into-standby-event")
+        listener     (PublishingSchedulerListener. channel "" queue)]
     (sched/add-scheduler-listener listener)
     (sched/start)    
     (sched/standby)
