@@ -24,7 +24,6 @@ With Leiningen:
 New snapshots are released to [clojars.org](https://clojars.org/clojurewerkz/quartzite.listeners.amqp) every few days.
 
 
-
 ## Continuous Integration
 
 [![Continuous Integration status](https://secure.travis-ci.org/michaelklishin/quartzite.listeners.amqp.png)](http://travis-ci.org/michaelklishin/quartzite.listeners.amqp)
@@ -32,12 +31,10 @@ New snapshots are released to [clojars.org](https://clojars.org/clojurewerkz/qua
 CI is hosted by [travis-ci.org](http://travis-ci.org)
 
 
-
 ## Supported Clojure versions
 
 [Quartzite](https://github.com/michaelklishin/quartzite) and its extensions were built from the ground up for Clojure 1.3 and up.
 Quartzite extensions like AMQP listeners support the same Clojure versions.
-
 
 
 ## License
