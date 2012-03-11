@@ -15,6 +15,12 @@ it may be challenging to use for anyone except the author.
 Once the library matures, we will update this document.
 
 
+## Supported Clojure versions
+
+[Quartzite](https://github.com/michaelklishin/quartzite) and its extensions were built from the ground up for Clojure 1.3 and up.
+Quartzite extensions like AMQP listeners support the same Clojure versions.
+
+
 ## Maven Artifacts
 
 With Leiningen:
@@ -31,10 +37,15 @@ New snapshots are released to [clojars.org](https://clojars.org/clojurewerkz/qua
 CI is hosted by [travis-ci.org](http://travis-ci.org)
 
 
-## Supported Clojure versions
+## Development
 
-[Quartzite](https://github.com/michaelklishin/quartzite) and its extensions were built from the ground up for Clojure 1.3 and up.
-Quartzite extensions like AMQP listeners support the same Clojure versions.
+Quartzite AMQP Listeners uses [Leiningen 2](https://github.com/technomancy/leiningen/blob/master/doc/TUTORIAL.md). Make
+sure you have it installed and then run tests against Clojure 1.3.0 and 1.4.0[-beta4] using
+
+    lein2 with-profile dev:1.4 test
+
+Then create a branch and make your changes on it. Once you are done with your changes and all
+tests pass, submit a pull request on Github.
 
 
 ## License
