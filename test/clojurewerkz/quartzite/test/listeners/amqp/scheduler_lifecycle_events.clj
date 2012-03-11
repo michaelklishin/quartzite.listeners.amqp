@@ -15,6 +15,7 @@
            [java.util.concurrent ConcurrentLinkedQueue CountDownLatch]))
 
 
+(sched/initialize)
 
 (defonce ^Connection conn    (lhc/connect))
 (defonce ^Channel    channel (.createChannel conn))
