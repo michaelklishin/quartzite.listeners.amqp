@@ -1,6 +1,6 @@
 (defproject clojurewerkz/quartzite.listeners.amqp "1.0.0-SNAPSHOT"
   :min-lein-version "2.0.0"
-  :description "Quartz listeners that publish event messages over AMQP. Intended to be used with clojurewerkz/quartzite."  
+  :description "Quartz listeners that publish event messages over AMQP. Intended to be used with clojurewerkz/quartzite."
   :dependencies [[org.clojure/clojure "1.3.0"]
                  [clojurewerkz/quartzite "1.0.0-beta2"]
                  [com.novemberain/langohr "1.0.0-beta1"]
@@ -19,5 +19,6 @@
                    :dependencies   [[org.clojure/clojure "1.4.0-beta4"]]}}
   :aliases  { "all" ["with-profile" "dev:dev,1.4"] }
   :aot [clojurewerkz.quartzite.listeners.amqp.PublishingSchedulerListener]
+  :javac-options      ["-target" "1.6" "-source" "1.6"]
   :java-source-paths ["src/java"]
   :warn-on-reflection true)
