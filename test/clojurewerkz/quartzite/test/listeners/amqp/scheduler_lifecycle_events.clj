@@ -28,7 +28,7 @@
 
 (defn register-consumer
   [^String test-name]
-  (let [queue      (str "clojurewerkz.quartzite.test.listeners.amqp." test-name)
+  (let [queue      (str "clojurewerkz.quartzite.test.listeners.amqp." (gensym test-name))
         _          (lhq/declare channel queue :auto-delete true)
         mbox       (ConcurrentLinkedQueue.)
         msg-handler   (fn [delivery properties payload]
@@ -132,7 +132,7 @@
     (.await latch2)
     (Thread/sleep 200)    
     (sched/unschedule-job tk)
-    (Thread/sleep 500)
+    (Thread/sleep 1000)
     (is (not (.isEmpty mbox)))
     (is (some #{"quartz.scheduler.job-unscheduled"}
            (vec (message-types-in mbox))))))
