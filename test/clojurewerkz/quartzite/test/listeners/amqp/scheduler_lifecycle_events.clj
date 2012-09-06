@@ -23,16 +23,16 @@
 
 (defn message-types-in
   [^ConcurrentLinkedQueue mbox]
-  (map (fn [[^Envelope delivery ^AMQP$BasicProperties properties payload]]
-         (.getType properties)) mbox))
+  (map (fn [[meta payload]]
+         (:type meta)) mbox))
 
 (defn register-consumer
   [^String test-name]
   (let [queue      (str "clojurewerkz.quartzite.test.listeners.amqp." (gensym test-name))
         _          (lhq/declare channel queue :auto-delete true)
         mbox       (ConcurrentLinkedQueue.)
-        msg-handler   (fn [delivery properties payload]
-                        (.add mbox [delivery properties payload]))]
+        msg-handler   (fn [ch metadata payload]
+                        (.add mbox [metadata payload]))]
     (-> (Thread. #(lhcons/subscribe channel queue msg-handler :auto-ack true)) .start)
     [queue mbox]))
 
