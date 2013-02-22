@@ -2,8 +2,8 @@
   :min-lein-version "2.0.0"
   :description "Quartz listeners that publish event messages over AMQP. Intended to be used with clojurewerkz/quartzite."
   :dependencies [[org.clojure/clojure    "1.4.0"]
-                 [clojurewerkz/quartzite "1.0.0-rc6"]
-                 [com.novemberain/langohr "1.0.0-beta4"]
+                 [clojurewerkz/quartzite "1.0.0"]
+                 [com.novemberain/langohr "1.0.0-beta11"]
                  [org.clojure/data.json   "0.1.2"]]
   :source-paths ["src/clojure"]
   :profiles {:dev {:resource-paths ["test/resources"],
