@@ -3,7 +3,7 @@
   :description "Quartz listeners that publish event messages over AMQP. Intended to be used with clojurewerkz/quartzite."
   :dependencies [[org.clojure/clojure    "1.4.0"]
                  [clojurewerkz/quartzite "1.0.0"]
-                 [com.novemberain/langohr "1.0.0-beta11"]
+                 [com.novemberain/langohr "2.2.1"]
                  [org.clojure/data.json   "0.1.2"]]
   :source-paths ["src/clojure"]
   :profiles {:dev {:resource-paths ["test/resources"],
