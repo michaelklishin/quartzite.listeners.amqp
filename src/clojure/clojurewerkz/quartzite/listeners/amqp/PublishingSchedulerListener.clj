@@ -4,8 +4,8 @@
               :state        state
               :constructors {[com.rabbitmq.client.Channel String String] []})
   (:require [langohr.basic     :as lhb]
-            [clojure.data.json :as json])
-  (:use [clojurewerkz.quartzite.conversion])
+            [clojure.data.json :as json]
+            [clojurewerkz.quartzite.conversion :refer :all])
   (:import [org.quartz SchedulerListener SchedulerException Trigger TriggerKey JobDetail JobKey]
            [com.rabbitmq.client Channel]
            [java.util Date]
