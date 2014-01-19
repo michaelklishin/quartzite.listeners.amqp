@@ -1,5 +1,4 @@
 (ns clojurewerkz.quartzite.test.listeners.amqp.scheduler-lifecycle-events
-  (:use [clojure.test])
   (:require [langohr.core      :as lhc]
             [langohr.basic     :as lhb]
             [langohr.queue     :as lhq]
@@ -9,7 +8,8 @@
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
             [clojurewerkz.quartzite.schedule.simple :as s]
-            [clojurewerkz.quartzite.listeners.amqp.PublishingSchedulerListener])
+            [clojurewerkz.quartzite.listeners.amqp.PublishingSchedulerListener]
+            [clojure.test :refer :all])
   (:import [com.rabbitmq.client Connection Channel AMQP$BasicProperties Envelope]
            [clojurewerkz.quartzite.listeners.amqp PublishingSchedulerListener]
            [java.util.concurrent ConcurrentLinkedQueue CountDownLatch]))
