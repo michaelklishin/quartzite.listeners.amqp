@@ -1,5 +1,5 @@
 (defproject clojurewerkz/quartzite.listeners.amqp "1.0.0-SNAPSHOT"
-  :min-lein-version "2.5.0"
+  :min-lein-version "2.5.1"
   :description "Quartz listeners that publish event messages over AMQP. Intended to be used with clojurewerkz/quartzite."
   :dependencies [[org.clojure/clojure    "1.6.0"]
                  [clojurewerkz/quartzite "1.3.0"]
